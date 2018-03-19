@@ -1,0 +1,4 @@
+-User (email,password) x
+-Category (id,name,slug) x
+-Post (id,category_id,tittle,content) x
+-Comment (id,post_id,user_id,message)
