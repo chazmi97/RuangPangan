@@ -37,6 +37,7 @@
                       @if (Auth::check())
 
                         <li><a href="{{ url('/profile') }}/{{ Auth::user()->slug }}">Profile</a></li>
+                        <li><a href="{{ url('/findFriends')}}"> Temukan Teman</a></li>
                       @endif
                     </ul>
 
@@ -52,6 +53,14 @@
                       </a>
                     </li>
 
+<!--
+                    <li>
+                      <a href="{{url('editProfile')}}" > Edit Profile</a>
+                    </li>  -->
+
+
+
+
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -59,6 +68,10 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{url('editProfile')}}">
+                                        {{ __('Edit Profile') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

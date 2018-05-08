@@ -1,8 +1,20 @@
-@extends('layouts.app')
+@extends('profile.master')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+  <ol class="breadcrumb">
+    <li><a href="{{url('/home')}}">Home  /</a></li>
+    <!-- <li class="active">Data</li> -->
+  </ol>
+
+
+    <div class="row">
+
+            @include('profile.sidebar')
+            <!-- <div class="col-md-3">
+                <div class="card-header">SideBar</div>
+            </div>
+             -->
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>

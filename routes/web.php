@@ -1,6 +1,5 @@
 <?php
 
-Use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,20 +15,43 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/test', function () {
+    return Auth::user()->test();
+});
+//
+// Route::get('/findFriends', function(){
+//   $uid = Auth::user()->id;
+//   $allUsers = DB::table('users')->where('id','!=',$uid)->get();
+//
+//   foreach ($allUsers as $u) {
+//     echo $u->name;
+//     echo "<br>";
+//   }
+//
+// });
+
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/post', 'PostController@index')->name('post.index');
-Route::get('/post/create', 'PostController@create')->name('post.create');
-Route::post('/post/create', 'PostController@store')->name('post.store');
-Route::get('/post/{post}', 'PostController@show')->name('post.show');
-Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
-Route::patch('/post/{post}/edit', 'PostController@update')->name('post.update');
-Route::delete('/post/{post}/delete', 'PostController@destroy')->name('post.destroy');
+Route::group(['middleware' => 'auth'], function(){
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/profile/{slug}','ProfileController@index');
+  Route::get('/changePhoto',function(){
+    return view('profile.pic');
+  });
 
+  Route::post('/uploadPhoto','ProfileController@uploadPhoto');
 
-Route::get('/lol', function(){
-  $data = Post::all();
-return $data;
-})->name('lol');
+  Route::get('editProfile', 'ProfileController@editProfileForm');
+  Route::post('/updateProfile','ProfileController@updateProfile');
+
+  Route::get('/findFriends', 'ProfileController@findFriends');
+
+  Route::get('/addFriend/{id}','ProfileController@sendRequest');
+      //
+
+});
+Route::get('/logout', 'Auth\LoginController@logout');
