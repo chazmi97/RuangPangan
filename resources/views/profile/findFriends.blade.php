@@ -48,7 +48,7 @@
                                 ?>
                                    <p>
                                         <a href="{{url('/')}}/addFriend/{{$uList->id}}"
-                                           class="btn btn-info btn-sm">Tambahkan Teman</a>
+                                           class="btn btn-info btn-sm">TambahkanTeman</a>
                                     </p>
                                 <?php } else {?>
                                     <p>Request Already Sent</p>
