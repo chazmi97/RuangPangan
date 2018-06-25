@@ -109,7 +109,7 @@ return back();
           ->update(['status' => 1]);
 
           $notifcations = new notifcations;
-          $notifcations -> note = 'Permintaan pertemanan';
+          $notifcations -> note = 'permintaanTeman';
           $notifcations -> user_hero = $id; //yang accept my request
           $notifcations -> user_logged = Auth::user()->id; //saya
           $notifcations -> status = '1'; // unread notifcation
@@ -168,7 +168,7 @@ return back();
 
     }
 
-    public function notifications($id){
+    public function notifications(){
 
       $uid = Auth::user()->id;
       $notes = DB::table('notifcations')

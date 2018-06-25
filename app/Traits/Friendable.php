@@ -2,29 +2,29 @@
 
 namespace App\Traits;
 use App\friendships;
+trait Friendable {
 
-trait Friendable
-{
-  public function test(){
+    public function test() {
 
         return 'hi';
-  }
+    }
 
-  public function addFriend($id){
-    $Friendship = friendships::create([
-      'requester' => $this->id, //yang login
-      'user_requested' => $id,
+    public function addFriend($id){
+        $Friendship = friendships::create([
+            'requester' => $this->id, // yang lgoin
+            'user_requested' => $id,
 
-    ]);
+        ]);
 
-    if($Friendship)
-    {
-      return $Friendship;
+        if($Friendship)
+        {
+
+            return $Friendship;
+        }
+
+        return 'failed';
 
     }
 
-    return 'failed';
-
-  }
 
 }

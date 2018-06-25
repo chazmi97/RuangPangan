@@ -11,6 +11,29 @@
 |
 */
 
+
+
+
+
+/*
+Route::get('/tes', function(){
+  $noti = DB::table('notifcations')
+    ->where('user_logged', Auth::user()->id)
+    ->get();
+    dd($noti);
+});
+
+
+Route::get('/count', function(){
+  $count = App\notifcations::where('status',1)
+  ->where('user_hero', Auth::user()->id)
+  ->count();
+
+  echo $count;
+});
+*/
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,6 +42,8 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return Auth::user()->test();
 });
+
+
 //
 // Route::get('/findFriends', function(){
 //   $uid = Auth::user()->id;
@@ -52,6 +77,17 @@ Route::group(['middleware' => 'auth'], function(){
 
   Route::get('/addFriend/{id}','ProfileController@sendRequest');
       //
+
+  Route::get('/requests', 'ProfileController@requests');
+
+
+  Route::get('/accept/{name}/{id}', 'ProfileController@accept');
+
+  Route::get('friends', 'ProfileController@friends');
+
+  Route::get('requestRemove/{id}', 'ProfileController@requestRemove');
+
+  Route::get('/notifications/{id}', 'ProfileController@notifications');
 
 });
 Route::get('/logout', 'Auth\LoginController@logout');

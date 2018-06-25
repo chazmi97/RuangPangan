@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="container">
+
     <ol class="breadcrumb">
         <li><a href="{{url('/home')}}">Home</a></li>
-        <li><a href="{{url('/profile')}}/{{Auth::user()->slug}}">/ Profile</a></li>
-        <li><a href="">/ Temukan Teman</a></li>
+        <li><a href="{{url('/profile')}}/{{Auth::user()->slug}}">/Profile</a></li>
+        <li><a href="">/Find Friends</a></li>
     </ol>
 
 
@@ -48,10 +49,10 @@
                                 ?>
                                    <p>
                                         <a href="{{url('/')}}/addFriend/{{$uList->id}}"
-                                           class="btn btn-info btn-sm">TambahkanTeman</a>
+                                           class="btn btn-info btn-sm">Tambahkan Teman</a>
                                     </p>
                                 <?php } else {?>
-                                    <p>Request Already Sent</p>
+                                    <p>Permintaan telah terkirim</p>
                                 <?php }?>
                             </div>
 

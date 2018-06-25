@@ -60,7 +60,9 @@
 
                       <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                       <input type="file" name="pic" class="form-control"/>
-                      <input type="submit" class="btn btn-success" name="btn"/>
+                      <button type="submit" class="btn btn-success" name="btn"/>
+                          Upload
+                      </button>
 
                     </form>
 

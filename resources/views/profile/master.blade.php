@@ -33,11 +33,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="nav navbar-nav">
                       @if (Auth::check())
+                        <li><a href="{{ url('/findFriends')}}">TemukanTeman </a></li>
 
-                        <li><a href="{{ url('/profile') }}/{{ Auth::user()->slug }}">Profile</a></li>
-                        <li><a href="{{ url('/findFriends')}}"> Temukan Teman</a></li>
+                        <li><a href="{{ url('/requests')}}">PermintaanTeman(
+                          {{App\friendships::where('status',Null)->where('user_requested', Auth::user()->id)->count()}}
+                        )</a></li>
+
+
+                       <!-- <li></li> -->
                       @endif
                     </ul>
 
@@ -48,41 +53,86 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                    <li><a href="">
-                        <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="img-circle"/><br>
+
+
+
+
+
+                      <li>
+                        <a href="{{url('/friends')}}"> Teman <i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+                      </li>
+
+                    <li class="nav-item dropdown">
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle fa fa-globe" href="#"
+                      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pr>
+                          <i class="fa fa-globe fa-2x" aria-hidden="true"></i>Notifikasi
+                          <span class="badge"
+                            style="background:red; position:relative; top:-16px; left:-10px;">
+
+                          {{  App\notifcations::where('status',1)
+                            ->where('user_hero', Auth::user()->id)
+                            ->count() }}
+
+                          </span>
+
                       </a>
-                    </li>
 
-<!--
-                    <li>
-                      <a href="{{url('editProfile')}}" > Edit Profile</a>
-                    </li>  -->
+                      <?php
+                      $notes = DB::table('users')
+                      ->leftJoin('notifcations', 'users.id', 'notifcations.user_logged')
+                      ->where('user_hero', Auth::user()->id)
+                      ->where('status', 1) // unread noti
+                      ->orderBy('notifcations.created_at', 'desc')
+                      ->get();
+                       ?>
 
 
+                      <ul class="dropdown-menu" role="menu">
+                        @foreach($notes as $note)
+                        <a href="{{url('/notifications')}}/{{$note->id}}">
+                        <li>  
+                          <div class="row">
+                        <div class="col-md-2">
+                          <img src="{{url('../')}}/public/img/{{$note->pic}}"
+                          style="width:25px; margin:5px" class="img-circle">
+                        </div>
+                        <div class="col-md-10 ">
+
+                          <b style="color:green">  {{ucwords($note->name)}}</b>
+                          <span style="color:#000"> {{$note->note}} </span>
+                          </div>
+                        </div>
+                        </li></a>
+                        @endforeach
+                      </ul>
+                      </li>
+
+                      <li class="nav-item dropdown">
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="img-circle"/> <span class="caret"></span>
+                          </a>
+
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{url('/home')}}">
+                                {{ __('Profile') }}
+                            </a>
 
 
+                              <a class="dropdown-item" href="{{url('editProfile')}}">
+                                  {{ __('Edit Profile') }}
+                              </a>
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ ucwords(Auth::user()->name) }} <span class="caret"></span>
-                                </a>
+                              <a class="dropdown-item" href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                  {{ __('Logout') }}
+                              </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{url('editProfile')}}">
-                                        {{ __('Edit Profile') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                          </div>
+                      </li>
                         @endguest
                     </ul>
                 </div>
