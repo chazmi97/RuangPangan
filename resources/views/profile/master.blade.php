@@ -89,20 +89,21 @@
 
                       <ul class="dropdown-menu" role="menu">
                         @foreach($notes as $note)
-                        <a href="{{url('/notifications')}}/{{$note->id}}">
-                        <li>  
-                          <div class="row">
-                        <div class="col-md-2">
-                          <img src="{{url('../')}}/public/img/{{$note->pic}}"
-                          style="width:25px; margin:5px" class="img-circle">
-                        </div>
-                        <div class="col-md-10 ">
-
-                          <b style="color:green">  {{ucwords($note->name)}}</b>
-                          <span style="color:#000"> {{$note->note}} </span>
-                          </div>
-                        </div>
-                        </li></a>
+                            <a href="{{url('/notifications')}}/{{$note->id}}">
+                                <li>  
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="{{url('../')}}/public/img/{{$note->pic}}"
+                                        style="width:25px; margin:5px" class="img-circle">
+                                    </div>
+                                
+                                    <div class="col-md-10 ">
+                                        <b style="color:green">  {{ucwords($note->name)}}</b>
+                                        <span style="color:#000"> {{$note->note}} </span>
+                                    </div>
+                                </div>
+                                </li>
+                            </a>
                         @endforeach
                       </ul>
                       </li>
@@ -113,7 +114,7 @@
                           </a>
 
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('/home')}}">
+                            <a class="dropdown-item" href="{{ url('/profile') }}/{{ Auth::user()->slug }}">
                                 {{ __('Profile') }}
                             </a>
 
