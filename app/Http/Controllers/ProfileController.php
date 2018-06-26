@@ -168,7 +168,7 @@ return back();
 
     }
 
-    public function notifications(){
+    public function notifications($id){
 
       $uid = Auth::user()->id;
       $notes = DB::table('notifcations')
