@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class friendships extends Model
+class Campaign extends Model
 {
-    protected $fillable = ['requester','user_requested','status'];
+    protected $fillable=['title','content','target','deadline'];
 
     public function user(){
         return $this->belongsTo('App\User');

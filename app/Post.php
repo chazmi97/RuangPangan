@@ -4,14 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class post extends Model
 {
-      protected $fillable = ['title','content','category_id','slug'];
+    protected $fillable = ['content'];
 
-      public function category()
-      {
-        return $this->belongsTo(Category::class);
+    public function user(){
+      return $this->belongsTo('App\User');
+    }
+    
+    public function comment(){
+      return $this->hasMany('App\comment');
+    }
 
-      }
+    public function like(){
+      return $this->hasMany('App\Like');
+    }
 
 }

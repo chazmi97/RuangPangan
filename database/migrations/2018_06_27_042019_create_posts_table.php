@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotifcationsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateNotifcationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifcations', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_logged')->nullable(); // ini yang looged in
-            $table->integer('user_hero')->nullable(); // Orang lain yang accept my request
-            $table->string('note');
+            $table->integer('user_id');
+            $table->text('content');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateNotifcationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifcations');
+        Schema::dropIfExists('posts');
     }
 }
