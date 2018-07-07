@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-    <form class="" action="{{route('store')}}" method="post">
+    <form class="" action="{{route('campaign.store')}}" method="post">
         {{csrf_field()}}
         <h2> Buat Campaign </h2>
         

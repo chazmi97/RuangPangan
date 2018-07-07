@@ -84,7 +84,7 @@ Auth::routes();
 
 Route::get('/campaign', 'CampaignController@index')->name('campaign.index');
 Route::get('/campaign/create', 'CampaignController@create')->name('create');
-Route::post('/campaign/create', 'CampaignController@store')->name('store');
+Route::post('/campaign/create', 'CampaignController@store')->name('campaign.store');
 //Route::get('/post/{id}', 'CampaignController@show')->name('show');
 
 Route::get('posts','HomeController@index');

@@ -185,7 +185,7 @@
          Teman </a>
        </li>
        <li>
-         <a href="{{url('/campaign')}}"> <img src="{{Config::get('app.url')}}/public/img/msg.png"
+         <a href="{{url('/campaign')}}"> <img src="{{('img/campaign.png')}}"
          width="32" style="margin:5px"  />
         Campaign</a>
        </li>
