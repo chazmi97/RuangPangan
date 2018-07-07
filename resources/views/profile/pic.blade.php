@@ -41,7 +41,7 @@
                               @endif -->
 
 
-                              <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="80px" height="80px" class="img-circle ctr"/><br>
+                              <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="80px" height="80px" class="img-circle ctr" ><br>
                               <!-- <a href="{{url('/')}}/changePhoto" >Ubah Gambar</a> -->
 
 

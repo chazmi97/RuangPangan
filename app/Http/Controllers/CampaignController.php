@@ -18,28 +18,24 @@ class CampaignController extends Controller
         return view('/campaign/create');
 
     }
+
     public function store(){
-        $createPost = DB::table('campaigns')
-            ->insert([
-                'user_id'=>Auth::user()->id,
-                'title'=>request('title'),
-                'content' =>request('content'), 
-                'target'=>request('target'),
-                'deadline'=>request('deadline'),
-                'created_at'=>date("Y-m-d H:i:s"),
-                'updated_at'=>date("Y-m-d H:i:s")]);
-        return redirect('/campaign');
-    }
-    /*
-    public function store(){
-        $campaign=Campaign::create([
+        $campaign = DB::table('campaigns')->insert([
+            'user_id'=>Auth::user()->id,
             'title'=>request('title'),
             'content'=>request('content'),
             'target'=>request('target'),
-            'deadline'=>request('deadline')
+            'deadline'=>request('deadline'),
+            'created_at'=>date("Y-m-d H:i:s"),
+            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 
         return redirect('/campaign');
     }
-    */
+/*
+    public function show($id){
+        $campaign = DB::table('campaigns')->get();
+        return view('campaign.index', compact('campaign'));
+    }
+*/
 }

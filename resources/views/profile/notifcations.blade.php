@@ -32,7 +32,7 @@
                           <ul>
                             <li>
                                 <p><a href="{{url('/profile')}}/{{$note->slug}}" style="font-weight: bold; color:green">
-                                  {{$note->name}}</a>{{$note->note}}</p>
+                                   {{$note->name}}</a>{{$note->note}}</p>
                             </li>
                           </ul>
 

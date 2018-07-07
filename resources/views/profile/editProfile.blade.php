@@ -78,7 +78,7 @@
                 <br>
 
                 <div class="input-group">
-                  <input type="submit" class="btn btn-success pull-right">
+                  <input type="submit" class="btn btn-success" value="Simpan Perubahan">
                 </div>
 
 

@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <ol class="breadcrumb">
         <li><a href="{{url('/home')}}">Home</a></li>

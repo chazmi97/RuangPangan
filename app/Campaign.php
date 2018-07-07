@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-    protected $fillable=['title','content','target','deadline'];
+    protected $fillable=['title','content'];
 
     public function user(){
         return $this->belongsTo('App\User');

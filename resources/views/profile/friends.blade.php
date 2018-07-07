@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="col-md-7 pull-left">
-                                <h3 style="margin:0px;"><a href="">{{ucwords($uList->name)}}</a></h3>
+                                <h3 style="margin:0px;"><a href="{{url('/profile')}}/{{$uList->slug}}">{{ucwords($uList->name)}}</a></h3>
 
                                 <p><b>Gender:</b> {{$uList->gender}}</p>
                                    <p><b>Email:</b> {{$uList->email}}</p>
@@ -43,7 +43,7 @@
                             <div class="col-md-3 pull-right">
 
                                      <p>
-                                        <a href=""  class="btn btn-info btn-sm">HapusTeman</a>
+                                        <a href="{{url('/unfriend')}}/{{$uList->id}} "  class="btn btn-info btn-sm">HapusTeman</a>
 
 
                                      </p>
