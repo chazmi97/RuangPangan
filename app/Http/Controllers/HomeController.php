@@ -26,6 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         $users = DB::table('users')->get();
-        return view('home', compact('users'));
+        $campaign = DB::table('campaigns')->where('status', '=', 0)->get();
+        if(Auth::user()->admin == 0){
+            return view('home', compact('users'));
+        } else{
+            return view('adminhome', compact('users', 'campaign'));
+        }
     }
 }

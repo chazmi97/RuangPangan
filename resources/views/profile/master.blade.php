@@ -36,9 +36,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                       @if (Auth::check())
-                        <li><a href="{{ url('/findFriends')}}"><i class="fas fa-search"></i>TemukanTeman </a></li>
+                        <li><a href="{{ url('/findFriends')}}"><i class="fas fa-search"></i>Temukan Teman </a></li>
 
-                        <li><a href="{{ url('/requests')}}"><i class="fa fa-plus" aria-hidden="true"></i>PermintaanTeman(
+                        <li><a href="{{ url('/requests')}}"><i class="fa fa-plus" aria-hidden="true"></i>Permintaan Teman(
                           {{App\friendships::where('status',Null)->where('user_requested', Auth::user()->id)->count()}}
                         )</a></li>
 

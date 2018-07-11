@@ -1,6 +1,13 @@
 @extends('profile.master')
 
 @section('content')
+<div class="panel-body">
+        <div class="col-sm-12 col-md-12">
+             @if ( session()->has('msg') )
+             <p class="alert alert-success">
+                          {{ session()->get('msg') }}
+                       </p>
+                    @endif
 <div class="col-md-12">
     <div class="col-md-12" align="center">
         <div class="card-body">
@@ -20,6 +27,7 @@
                             <h3>{{$post->title}}</h3>
                         </div>
                         <div class="panel-body">
+                            <p>{{$post->content}}</p>
                             <p>Perkiraan kebutuhan: {{$post->target}}</p>
                         </div>
                     </div>

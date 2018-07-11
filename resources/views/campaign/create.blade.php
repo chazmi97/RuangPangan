@@ -20,7 +20,7 @@
                 <label>Konten</label>
                 <textarea class="form-control" row="5" name="content" placeholder="Konten"></textarea>
         </div>
-
+        
         <div class="form-group">
                 <label>Deadline</label>
                 <input type="date" class="form-control" name="deadline" placeholder="Deadline">

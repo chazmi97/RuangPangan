@@ -12,80 +12,73 @@
 */
 
 
-
-
-
-/*
-Diubah, nanti diganti lagi jadi baris ke 28
-Route::get('/', function () {
-    $posts = DB::table('posts')
-    ->leftJoin('profiles','profiles.user_id','posts.user_id')
-    ->leftJoin('users','posts.user_id','users.id')
-    ->orderBy('posts.created_at','desc')->take(2)
-    ->get();
-    return view('welcome', compact('posts'));
-});
-*/
-
-Route::get('/', 'PostsController@read');
-
-Route::post('addPost','PostsController@addPost');
-
-Route::post('/','PostsController@addPost')->name('store');
-
-Route::get('/test', function () {
-    return Auth::user()->test();
-});
-
 Auth::routes();
 
   Route::group(['middleware' => 'auth'], function(){
-  Route::get('/home', 'HomeController@index')->name('home');
-  Route::get('/profile/{slug}','ProfileController@index');
-  Route::get('/changePhoto',function(){
-    return view('profile.pic');
-  });
-// -- PROFIL --
-  Route::post('/uploadPhoto','ProfileController@uploadPhoto');
+    //  -- MIDDLEWARE START --
+    //  -- USER ROUTE --  //
+    Route::get('/home', 'HomeController@index')->name('home');
 
-  Route::get('editProfile', 'ProfileController@editProfileForm');
-  Route::post('/updateProfile','ProfileController@updateProfile');
+    // -- POST --
+    Route::get('/', 'PostsController@read');
 
-// --PERTEMANAN
-  Route::get('/findFriends', 'ProfileController@findFriends');
+    Route::post('addPost','PostsController@addPost');
 
-  Route::get('/addFriend/{id}','ProfileController@sendRequest');
+    Route::post('/','PostsController@addPost')->name('store');
 
-  Route::get('/requests', 'ProfileController@requests');
+    // Route:get('/likePost/{id}', 'PostsController@like');
+    
+    // -- PROFIL --
+    Route::get('/profile/{slug}','ProfileController@index');
 
-  Route::get('/accept/{name}/{id}', 'ProfileController@accept');
+    Route::get('/changePhoto',function(){
+      return view('profile.pic');
+      });
+  
+    Route::post('/uploadPhoto','ProfileController@uploadPhoto');
 
-  Route::get('friends', 'ProfileController@friends');
+    Route::get('editProfile', 'ProfileController@editProfileForm');
 
-  Route::get('requestRemove/{id}', 'ProfileController@requestRemove');
+    Route::post('/updateProfile','ProfileController@updateProfile');
 
-  Route::get('/notifications/{id}', 'ProfileController@notifications');
+  // --PERTEMANAN --
+    Route::get('/findFriends', 'FrienshipController@findFriends');
 
-  Route::get('/unfriend/{id}', function($id){
-      $loggedUser = Auth::user()->id;
+    Route::get('/addFriend/{id}','FrienshipController@sendRequest');
 
-      DB::table('friendships')
-        ->where('requester', $loggedUser)
-        ->where('user_requested',$id)
-        ->delete();
+    Route::get('/requests', 'FrienshipController@requests');
 
-      return back()->with('msg','Kamu sudah tidak berteman dengan dia');
-  });
+    Route::get('/accept/{name}/{id}', 'FrienshipController@accept');
 
-  //like Post
-  // Route:get('/likePost/{id}', 'PostsController@like');
+    Route::get('friends', 'FrienshipController@friends');
+
+    Route::get('requestRemove/{id}', 'FrienshipController@requestRemove');
+
+    Route::get('/unfriend/{id}', 'FrienshipController@unfriend');
+
+    // -- NOTIFICATION --
+    Route::get('/notifications/{id}', 'NotificationController@show');
+
+    // -- CAMPAIGN
+    Route::get('/campaign', 'CampaignController@index')->name('campaign.index');
+    
+    Route::get('/campaign/create', 'CampaignController@create')->name('create');
+    
+    Route::post('/campaign/create', 'CampaignController@store')->name('campaign.store');
+
+    //  --ADMIN ROUTE --  //
+    Route::delete('/home/{id}', 'AdminController@decline')->name('campaign.decline');
+    Route::post('/home/{id}', 'AdminController@approve')->name('campaign.approve');
+    Route::get('/home/{id}', 'AdminController@show')->name('admin.show');
+    
+    // -- MIDDLEWARE END --
 
 });
 
-Route::get('/campaign', 'CampaignController@index')->name('campaign.index');
-Route::get('/campaign/create', 'CampaignController@create')->name('create');
-Route::post('/campaign/create', 'CampaignController@store')->name('campaign.store');
-//Route::get('/post/{id}', 'CampaignController@show')->name('show');
+
+// Route::get('/campaign/{id}', 'CampaignController@show')->name('campaign.show');
+
+
 
 Route::get('posts','HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
